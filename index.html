@@ -115,11 +115,55 @@
         }, false)
         
     </script>
+       
 
-
-    <!-- learning D3 -->
-
+    <!-- bar chart of Acidity vs Sweetness-->
     <script>
+        let coffeeData = [];
+        d3.csv("/assets/data/arabica-data.csv", function(d) {
+            return {
+                country: d.Country,
+                acidity: +(d.AcidityRel),
+                sweetness: +(d.Sweetness)
+            };
+        }, function(error, rows) {
+            coffeeData = rows;
+            console.log(coffeeData);
+            createScatter();
+        })
+
+        function createScatter() {
+            // let w = document.body.clientWidth;
+            // let h = document.body.clientHeight * 5;
+
+            let w = 2000;
+            let h = 250;
+
+            let svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h)
+                .attr("style", "outline: thin solid black;");
+
+            svg.selectAll("circle")
+                .data( coffeeData)
+                .enter()
+                .append("circle")
+                .attr("cx", function(d) {
+                    return d.acidity * 1500;
+                })
+                .attr("cy", function(d) {
+                    return d.sweetness * 20;
+                })
+                .attr("r", 4);
+                
+        }
+    
+    </script>
+
+    <!-- bar chart of Country vs Balance-->
+
+    <!-- <script>
         let arabicaData = [];
 
         d3.csv("/assets/data/arabica-data.csv", function(d) {
@@ -177,7 +221,10 @@
             
         }
         
-    </script>
+    </script> -->
+
+
+    
 
     
     <!-- <script src="./dist/main.js"></script> -->
