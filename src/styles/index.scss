@@ -4,7 +4,7 @@
     box-shadow: 3px 3px 5px 5px $color, 1px 0px 1px $color;
   }
   
-  $main-color: green;
+  $main-color: rgb(0, 102, 128);
   $accent-color: darken($main-color, 10%);
   $background-color: lighten($main-color, 40%);
   
@@ -25,7 +25,7 @@
   
   // COMPONENTS
   .card {
-    background: white;
+    background: rgb(100, 28, 28);
     height: 50vh;
     width: 50vw;
     border-radius: 15px;
@@ -36,3 +36,101 @@
   h2 {
     font-size: 3rem;
   }
+
+
+  //scroller
+    .container {
+      width: 100vw;
+    }
+    
+    #graphic {
+      padding-top: 5% 10%;
+      width: 100%;
+    }
+    
+    
+    #sections {
+      position: relative;
+      display: inline-block;
+      width: 20vw;
+      top: 0px;
+      z-index: 90;
+      padding-bottom: 200px;
+      text-align: center;
+    }
+    #sections-right {
+      position: relative;
+      display: inline-block;
+      width: 250px;
+      top: 10vh;
+      left: 50%;
+      z-index: 90;
+      padding-bottom: 200px;
+      text-align: center;
+    }
+    
+    .step {
+      margin-bottom: 200px;
+      font-family: "TiemposTextWeb-Regular","Georgia";
+      font-size: 16px;
+      line-height: 23px;
+      color: #767678;
+    }
+    
+    #sections .title {
+      font-family: Arial,Helvetica,"san-serif";
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 2px;
+      color: #262626;
+      line-height: 1.2em;
+    }
+    #sections-right .title {
+      font-family: Arial,Helvetica,"san-serif";
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 2px;
+      color: #262626;
+      line-height: 1.2em;
+    }
+
+
+    
+    #vis {
+      display: inline-block;
+      position: fixed;
+      top: 60px;
+      z-index: 1;
+      margin-left: 0;
+      
+      height: 50vh;
+      width: 58vw;
+      background-color: #ddd;
+    }
+    
+    #vis .title {
+      font-size:120px;
+      text-anchor: middle;
+    }
+    
+    #vis .sub-title {
+      font-size:80px;
+      text-anchor: middle;
+    }
+  //snake
+
+    .content{
+      height:224px;
+      overflow:auto;
+      background: transparent;
+      width: 100%;
+    }
+
+    .disable-scrollbars {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE 10+ */
+      &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* Chrome/Safari/Webkit */
+      }
+    }

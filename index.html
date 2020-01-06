@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./dist/main.css" />
+    <title>Journey of Arabica</title>
+    <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+</head>
+<body>
+    
+    <!-- learning 1wheel -->
+    <div class="container">
+        <h1>Journey of Arabica</h1>
+        <div id='graphic'>
+            <div id='sections'>
+                <section class="step">
+                    <div class="title">The journey begins!</div>
+                    An arabica coffee bean
+                </section>
+                <section class="step">
+                    <div class="title">A Tree</div>
+                    So many coffee cherries! This is going to be rad
+                </section>
+            </div>
+            <div id='vis' className="content">
+            </div>
+            <div id='sections-right'>
+                <section class="step">
+                    <div class="title">I'm a side nav!</div>
+                    blah blah blah
+                </section>
+                
+            </div>
+            <div id="wrapper">
+                <div id="viz" class="content disable-scrollbars"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        let content = document.getElementById('viz');
+
+        let svg = d3.select("#viz")
+            .append("svg")
+            .attr("width", 300)
+            .attr("height", 300);
+        svg.append("rect")
+            .style("stroke", "green")
+            .style("fill", "green")
+            .attr("x", 50)
+            .attr("y", 25)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "yellow")
+            .style("fill", "yellow")
+            .attr("x", 50)
+            .attr("y", 50)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "green")
+            .style("fill", "green")
+            .attr("x", 50)
+            .attr("y", 75)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "yellow")
+            .style("fill", "yellow")
+            .attr("x", 50)
+            .attr("y", 100)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "green")
+            .style("fill", "green")
+            .attr("x", 50)
+            .attr("y", 125)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "yellow")
+            .style("fill", "yellow")
+            .attr("x", 50)
+            .attr("y", 150)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "green")
+            .style("fill", "green")
+            .attr("x", 50)
+            .attr("y", 175)
+            .attr("width", 25)
+            .attr("height", 25);
+        svg.append("rect")
+            .style("stroke", "yellow")
+            .style("fill", "yellow")
+            .attr("x", 50)
+            .attr("y", 200)
+            .attr("width", 25)
+            .attr("height", 25);
+        let label = svg.append("text")
+            .attr("x", 40)
+            .attr("y", 10)
+            .attr("dy", ".35em")
+            .text("LABEL");
+
+        content.addEventListener('scroll', function(evt) {
+            label.node().setAttribute('y', 10 + this.scrollTop);
+        }, false)
+        
+    </script>
+
+
+    <!-- learning D3 -->
+
+    <script>
+        let arabicaData = [];
+
+        d3.csv("/assets/data/arabica-data.csv", function(d) {
+            return{
+                country: d.Country,
+                balance: +d.Balance // force value to be number(+)
+            };
+        }, function (error, rows) {
+            arabicaData = rows; // set  arabicaData equal to rows
+            console.log(arabicaData);
+            createVisualization();
+        });
+
+        function createVisualization() {
+
+            let w = document.body.clientWidth;
+            let h = document.body.clientHeight * 5;
+
+            let arrayLength = arabicaData.length;
+            let maxValue = d3.max(arabicaData, function(d) {return +d.balance} );
+            let x_axisLength = 1000;
+            let y_axisLength = 100;
+
+            // Use a scale for height of visualization
+            let yScale = d3.scaleLinear()
+                .domain([0, maxValue])
+                .range([0, y_axisLength]);
+
+            let svg = d3.selectAll("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+            
+            svg.selectAll( "rect" ) // select all iterates through SVG rect elements. Could do for id='' or class of ''
+                .data( arabicaData )
+                .enter() //creates placeholders for each data element with no corresponding DOM ele
+                .append("rect")
+                .attr( "x", function(d,i){
+                    return i*10 + 10;
+                })     
+                .attr( "y", function(d) {
+                    return h - yScale(d.balance); // set y coordinate of rect using y scale
+                })
+
+                .attr( "width", 20 )
+                .attr( "height", function(d){
+                    return yScale(d.balance);
+                })
+                .attr( "fill", "steelblue");
+
+            // .attr( "height", function(d){
+            //     return d;
+            // });
+
+            
+        }
+        
+    </script>
+
+    
+    <!-- <script src="./dist/main.js"></script> -->
+
+    <!-- <script src="lib/d3.js"></script> -->
+    <!-- <script src="js/scroller.js"></script> -->
+    <!-- <script src="js/sections.js"></script> -->
+    
+</body>
+</html>

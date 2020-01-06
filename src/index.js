@@ -12,6 +12,6 @@ const testObj = {
     document.body.classList.add("center");
     const card = document.createElement("div");
     card.classList.add("card", "center");
-    card.innerHTML = `<h2>${greeting} World!</h2>`;
+    card.innerHTML = `<h2>${greeting} HowsWorld!</h2>`;
     document.body.append(card);
   });
