@@ -13,10 +13,7 @@ In Journey of Arabica, users will be able to scroll up and down through the webs
 3. Create interactive graph showcasing reviews by processing method
 
 **3. Wireframes**
-
-<p align="center">
-    <img src="https://github.com/imshentastic/journey-of-arabica/blob/master/docs/Wireframe.png" alt="Wireframe">
-</p>
+![Wireframe](/assets/images/Wireframe.png "Wireframe")
 
 **4. Architecture and Technology**
 
