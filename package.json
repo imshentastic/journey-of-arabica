@@ -1,0 +1,47 @@
+{
+  "name": "Journey of Arabica",
+  "version": "1.0.0",
+  "description": "A web app using D3 and JavaScript to show the journey and statistics of Arabica coffee",
+  "main": "index.js",
+  "browserslist": [
+    "last 1 version",
+    "> 1%",
+    "maintained node versions",
+    "not dead"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "webpack:watch": "webpack --watch --config webpack.dev.js",
+    "webpack:build": "webpack --config webpack.prod.js  --optimize-minimize"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imshentastic/journey-of-arabica.git"
+  },
+  "author": "Michael Shen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imshentastic/journey-of-arabica/issues"
+  },
+  "homepage": "https://github.com/imshentastic/journey-of-arabica#readme",
+  "dependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "autoprefixer": "^9.7.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.1",
+    "fibers": "^4.0.2",
+    "jshint": "^2.11.0-rc1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.13.0",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.24.2",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.1.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^4.2.2"
+  }
+}
