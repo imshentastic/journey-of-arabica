@@ -1,237 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"></html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./dist/main.css" />
     <title>Journey of Arabica</title>
-    <script src="http://d3js.org/d3.v4.min.js" charset="utf-8"></script>
-</head>
-<body>
-    
-    <!-- learning 1wheel -->
-    <div class="container">
-        <h1>Journey of Arabica</h1>
-        <div id='graphic'>
-            <div id='sections'>
-                <section class="step">
-                    <div class="title">The journey begins!</div>
-                    An arabica coffee bean
-                </section>
-                <section class="step">
-                    <div class="title">A Tree</div>
-                    So many coffee cherries! This is going to be rad
-                </section>
-            </div>
-            <div id='vis' className="content">
-            </div>
-            <div id='sections-right'>
-                <section class="step">
-                    <div class="title">I'm a side nav!</div>
-                    blah blah blah
-                </section>
-                
-            </div>
-            <div id="wrapper">
-                <div id="viz" class="content disable-scrollbars"></div>
-            </div>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
+
+    <script src="lib/scatter.js"charset="utf-8"></script>
+
+    
+    </head>
+
+<body>
+    <div id="graphic">
+        <h1>Journey of Arabica</h1>
+
+        <div class="container">
+            <div id="div1">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            </div>
+            <div id="div2">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                <p></p>
+            </div>
+            <div id="div4">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            </div>
+            <div id="div6">
+                <h2>Typically yields the best results when grown at <strong>high elevations</strong> (2,000 - 7,000 feet above sea level)</h2>
+            </div>
         </div>
+
+        <div class="containerB">
+            <div id="div3">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            </div>
+            <div id="div5">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                <p></p>
+            </div>
+            <div id="div7">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            </div>
+            <div id="div8">
+                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+            </div>
+        </div>
+        <div id="scatterZoom"></div>
     </div>
 
+    <!-- vector set up with fixed container -->
+    <!-- <div class="fixed">
+        <svg id="viz" width="100%" height="100%">
+            <ellipse cx="200" cy="100" rx="18" ry="25" fill="#71413E"/>
+        </svg>
+    </div> -->
 
-    <script>
-        let content = document.getElementById('viz');
 
-        let svg = d3.select("#viz")
-            .append("svg")
-            .attr("width", 300)
-            .attr("height", 300);
-        svg.append("rect")
-            .style("stroke", "green")
-            .style("fill", "green")
-            .attr("x", 50)
-            .attr("y", 25)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "yellow")
-            .style("fill", "yellow")
-            .attr("x", 50)
-            .attr("y", 50)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "green")
-            .style("fill", "green")
-            .attr("x", 50)
-            .attr("y", 75)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "yellow")
-            .style("fill", "yellow")
-            .attr("x", 50)
-            .attr("y", 100)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "green")
-            .style("fill", "green")
-            .attr("x", 50)
-            .attr("y", 125)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "yellow")
-            .style("fill", "yellow")
-            .attr("x", 50)
-            .attr("y", 150)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "green")
-            .style("fill", "green")
-            .attr("x", 50)
-            .attr("y", 175)
-            .attr("width", 25)
-            .attr("height", 25);
-        svg.append("rect")
-            .style("stroke", "yellow")
-            .style("fill", "yellow")
-            .attr("x", 50)
-            .attr("y", 200)
-            .attr("width", 25)
-            .attr("height", 25);
-        let label = svg.append("text")
-            .attr("x", 40)
-            .attr("y", 10)
-            .attr("dy", ".35em")
-            .text("LABEL");
-
-        content.addEventListener('scroll', function(evt) {
-            label.node().setAttribute('y', 10 + this.scrollTop);
-        }, false)
-        
-    </script>
-       
-
-    <!-- bar chart of Acidity vs Sweetness-->
-    <script>
-        let coffeeData = [];
-        d3.csv("/assets/data/arabica-data.csv", function(d) {
-            return {
-                country: d.Country,
-                acidity: +(d.AcidityRel),
-                sweetness: +(d.Sweetness)
-            };
-        }, function(error, rows) {
-            coffeeData = rows;
-            console.log(coffeeData);
-            createScatter();
-        })
-
-        function createScatter() {
-            // let w = document.body.clientWidth;
-            // let h = document.body.clientHeight * 5;
-
-            let w = 2000;
-            let h = 250;
-
-            let svg = d3.select("body")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h)
-                .attr("style", "outline: thin solid black;");
-
-            svg.selectAll("circle")
-                .data( coffeeData)
-                .enter()
-                .append("circle")
-                .attr("cx", function(d) {
-                    return d.acidity * 1500;
-                })
-                .attr("cy", function(d) {
-                    return d.sweetness * 20;
-                })
-                .attr("r", 4);
-                
-        }
-    
-    </script>
-
-    <!-- bar chart of Country vs Balance-->
 
     <!-- <script>
-        let arabicaData = [];
+        let svg = d3.select("svg"); // select all svg
 
-        d3.csv("/assets/data/arabica-data.csv", function(d) {
-            return{
-                country: d.Country,
-                balance: +d.Balance // force value to be number(+)
-            };
-        }, function (error, rows) {
-            arabicaData = rows; // set  arabicaData equal to rows
-            console.log(arabicaData);
-            createVisualization();
-        });
+        // assign svg width and height
+        svg.attr('width',500)
+            .attr('height',500)
 
-        function createVisualization() {
+        //set up grid spacing
+        let spacing = 40;
+        let rows = 10;
+        let column = 10;
+        let randnum = (min,max) => Math.round( Math.random() * (max-min) + min );
 
-            let w = document.body.clientWidth;
-            let h = document.body.clientHeight * 5;
 
-            let arrayLength = arabicaData.length;
-            let maxValue = d3.max(arabicaData, function(d) {return +d.balance} );
-            let x_axisLength = 1000;
-            let y_axisLength = 100;
 
-            // Use a scale for height of visualization
-            let yScale = d3.scaleLinear()
-                .domain([0, maxValue])
-                .range([0, y_axisLength]);
+        //Create an array of objects
+        let our_data = d3.range(20).map(i => 
+        ({ 'device': i < 5 ? 'ios' : 'android', 
+            'city': i < 3 ? 'San Diegan' : 'Out of towners', 
+            'age': randnum(25, 65)
+        }));
+        // console.log(our_data)
 
-            let svg = d3.selectAll("body")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
-            
-            svg.selectAll( "rect" ) // select all iterates through SVG rect elements. Could do for id='' or class of ''
-                .data( arabicaData )
-                .enter() //creates placeholders for each data element with no corresponding DOM ele
-                .append("rect")
-                .attr( "x", function(d,i){
-                    return i*10 + 10;
-                })     
-                .attr( "y", function(d) {
-                    return h - yScale(d.balance); // set y coordinate of rect using y scale
-                })
+        //create group and join data
+        // each object in array assigned a <g>
+        let group = svg.selectAll('g')
+            .data(our_data)
+            .enter()
+            .append("g")
 
-                .attr( "width", 20 )
-                .attr( "height", function(d){
-                    return yScale(d.balance);
-                })
-                .attr( "fill", "steelblue");
+        //create rectangles
+        let rects = group.append("rect")
 
-            // .attr( "height", function(d){
-            //     return d;
-            // });
+        //city data
+        d3.selectAll('g')
+            .append("text")
+            .text( (d) => d["city"])
+            .attr("fill", "gray")
+            .attr("class", "city")
+            .attr("dx", -500)
 
-            
+        //age data
+        d3.selectAll('g')
+            .append("text")
+            .text( (d) => d["age"] )
+            .attr("fill", "#fff")
+            .attr("class", "age")
+            .attr("dx", -500)
+
+        // square grid
+        let grid = () =>{
+        rects
+            .transition()
+            .delay((d, i) => 10 * i)
+            .duration(600)
+            .ease("elastic")
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("rx", 5)
+            .attr("ry", 5)
+            .attr("x", (d, i) => i % column * spacing)
+            .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
+            .attr("fill", (d, i) => (i < 40 ? "#394147" : "#99c125"))
+            .attr("opacity", "1")
         }
+
+        //circle grid
+        let grid2 = () =>{
+        rects
+            .transition()
+            .delay((d, i) => 10 * i)
+            .duration(600)
+            .ease("elastic")
+            .attr("width", 20)
+            .attr("height", 20)
+            .attr("rx", "50%")
+            .attr("ry", "50%")
+            .attr("x", (d, i) => i % column * spacing)
+            .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
+            .attr("fill", (d, i) => (i < 8 ? "none" : "#99c125"))
+        }
+
+        //divide
+        let divide = () => {
+            rects.transition()
+                .delay((d, i) => 10 * i)
+                .duration(600)
+                .ease("elastic")
+                .attr("width", 10)
+                .attr("height", 10)
+                .attr("rx", 0)
+                .attr("ry", 0)
+                .attr("x", (d, i) => d['device'] == "ios" ? randnum(100, 150) :  randnum(300, 350))
+                .attr("y", (d, i) => i * 20)
+                .attr("fill", (d, i) => d['device'] == "ios" ? "#394147": "#99c125")
+                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+
+            //age
+            d3.selectAll('text.age')
+                .transition()
+                .delay( (d,i) => 40*i ) 
+                .duration(900)
+                .ease('elastic')
+                .attr("dx", -500)
+
+            //city
+            d3.selectAll('text.city')
+                .transition()
+                .delay( (d,i) => 40*i ) 
+                .duration(900)
+                .ease('elastic')
+                .attr("dx", -500)
+        }
+
+        //bar chart
+        let barChart = () => {
+        rects
+            .attr("rx", 0 )
+            .attr("ry", 0 )
+            .transition()
+            .delay( (d,i) => 20*i ) 
+            .duration(900)
+            .ease('elastic')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
+            .attr("x", (d,i) => 150 )
+            .attr("y", (d,i) => i * 17 )
+            .attr("width", (d,i) => d["age"])
+            .attr("height", (d,i) => 15)
+            .attr("fill", (d, i) => (i < 3 ? "#99c125" : "#394147"))
+            .attr("opacity", 1)
+            .attr("transform", "translate(0,0) rotate(0)")
+            .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+
+        //age text
+        d3.selectAll('text.age')
+            .transition()
+            .delay( (d,i) => 20*i ) 
+            .duration(900)
+            .ease('elastic')
+            //align text right
+            .attr("text-anchor", "start")
+            .attr("dx", 160)
+            .attr("dy", (d,i)=> (i * 17) + 12)
+            .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//nly show 12 people
+
+        //city text
+        d3.selectAll('text.city')
+            .transition()
+            .delay( (d,i) => 20*i ) 
+            .duration(900)
+            .ease('elastic')
+            //align text left
+            .attr("text-anchor", "end")
+            .attr("dx", 140)
+            .attr("dy", (d,i)=> (i * 17) + 12)
+            .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+
+
+        }
+
         
-    </script> -->
+
+        //waypoints scroll constructor from git
+        function scroll(n, offset, func1, func2){
+            // create new Waypoint at specified ElementId
+            return new Waypoint({
+                element: document.getElementById(n),
+                handler: function(direction) {
+                direction == 'down' ? func1() : func2();
+            },
+            //start 75% from the top of the div
+            offset: offset
+            });
+        };
 
 
-    
+        let circle = svg.selectAll("circle")
+        .data([32, 57, 293], function(d) { return d; });
 
-    
-    <!-- <script src="./dist/main.js"></script> -->
+        circle.enter().append("circle")
+            .attr("cy", 60)
+            .attr("cx", function(d, i) { return i * 100 + 30; })
+            .attr("r", function(d) { return Math.sqrt(d); });
 
-    <!-- <script src="lib/d3.js"></script> -->
-    <!-- <script src="js/scroller.js"></script> -->
-    <!-- <script src="js/sections.js"></script> -->
-    
+        let scrolling = () => {
+            d3.select("body").transition()
+            .styleTween("color", function() { return d3.interpolate("green", "red"); })
+        }
+
+        //create new Waypoints, triggering on element id, percent direction,
+        // and trigger function on scroll
+        // new scroll('div2', '75%', grid2, grid);
+        // new scroll('div4', '75%', divide, grid);
+        // new scroll('div6', '75%', barChart, divide);
+        // new scroll('div8', '75%', divide, grid);
+        // new scroll('div4', '>80%', scrolling, grid); // scroll down makes green, otherwise is red
+        // new scroll('div2', '80%', textGrab, textLeave); 
+
+        //initiate with grid on page load
+        grid();
+
+  </script> -->
+
+
 </body>
-</html>

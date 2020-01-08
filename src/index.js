@@ -1,3 +1,4 @@
+import './styles/_css_reset.scss';
 import './styles/index.scss';
 
 const testObj = {
