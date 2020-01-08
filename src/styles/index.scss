@@ -1,3 +1,4 @@
+@import "./grid.scss";
 
 html,body{
     height: 100%;
@@ -34,17 +35,7 @@ strong{
     position:  relative; 
     margin: auto;
 }
-.container {
-    height: 100%;
-    max-width: 300px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    height: 100%;
-    line-height: 1.5;
-    left: 0px;
-}
+
 .container div {
     height: 100%;
     display: block;
@@ -76,25 +67,28 @@ strong{
     left: 30%;
     z-index: 20;
 }
+.fixedHidden {
+    position: absolute;
+}
+
 
 #scatterZoom {
     position: fixed;
     bottom: 10%;
-    width: 100vw;
-    height: 100vh;
+    width: 80vw;
+    height: 80vh;
     top: 15%;
-    left: 2%;
+    left: 10%;
     pointer-events: auto;
     display: flex;
     justify-content: center;
-
-
+    opacity: 0;
 }
 
 #scatterZoom > svg{
 
-    width: 50%;
-    height: 50%;
+    width: 62vw;
+    height: 70vh;
     z-index: 110;
 }
 
@@ -115,5 +109,9 @@ strong{
 }
 
 .rect {
-    pointer-events: auto;
+
+}
+
+#div8 {
+    opacity: 0;
 }

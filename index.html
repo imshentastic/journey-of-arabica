@@ -7,13 +7,10 @@
     <link rel="stylesheet" href="./dist/main.css" />
     <title>Journey of Arabica</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="lib/d3v3.js"charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
-
     <script src="lib/scatter.js"charset="utf-8"></script>
-
-    
     </head>
 
 <body>
@@ -50,21 +47,27 @@
             <div id="div8">
                 <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
             </div>
+            <div id="divX">
+            </div>
+
         </div>
-        <div id="scatterZoom"></div>
+
+            <div id="scatterZoom"></div>
+
+        
     </div>
 
     <!-- vector set up with fixed container -->
-    <!-- <div class="fixed">
+    <div class="fixed">
         <svg id="viz" width="100%" height="100%">
-            <ellipse cx="200" cy="100" rx="18" ry="25" fill="#71413E"/>
+            <!-- <ellipse cx="200" cy="100" rx="18" ry="25" fill="#71413E"/> -->
         </svg>
-    </div> -->
+    </div>
 
 
 
-    <!-- <script>
-        let svg = d3.select("svg"); // select all svg
+    <script>
+        let svg = d3v3.select("svg"); // select all svg
 
         // assign svg width and height
         svg.attr('width',500)
@@ -79,7 +82,12 @@
 
 
         //Create an array of objects
-        let our_data = d3.range(20).map(i => 
+        // let our_data = d3v3.range(20).map(i => 
+        // ({ 'device': i < 5 ? 'ios' : 'android', 
+        //     'city': i < 3 ? 'San Diegan' : 'Out of towners', 
+        //     'age': randnum(25, 65)
+        // }));
+        let our_data = d3v3.range(2).map(i => 
         ({ 'device': i < 5 ? 'ios' : 'android', 
             'city': i < 3 ? 'San Diegan' : 'Out of towners', 
             'age': randnum(25, 65)
@@ -94,10 +102,10 @@
             .append("g")
 
         //create rectangles
-        let rects = group.append("rect")
+        // let rects = group.append("rect")
 
         //city data
-        d3.selectAll('g')
+        d3v3.selectAll('g')
             .append("text")
             .text( (d) => d["city"])
             .attr("fill", "gray")
@@ -105,7 +113,7 @@
             .attr("dx", -500)
 
         //age data
-        d3.selectAll('g')
+        d3v3.selectAll('g')
             .append("text")
             .text( (d) => d["age"] )
             .attr("fill", "#fff")
@@ -114,35 +122,35 @@
 
         // square grid
         let grid = () =>{
-        rects
-            .transition()
-            .delay((d, i) => 10 * i)
-            .duration(600)
-            .ease("elastic")
-            .attr("width", 20)
-            .attr("height", 20)
-            .attr("rx", 5)
-            .attr("ry", 5)
-            .attr("x", (d, i) => i % column * spacing)
-            .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-            .attr("fill", (d, i) => (i < 40 ? "#394147" : "#99c125"))
-            .attr("opacity", "1")
+            rects
+                .transition()
+                .delay((d, i) => 10 * i)
+                .duration(600)
+                .ease("elastic")
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("rx", 5)
+                .attr("ry", 5)
+                .attr("x", (d, i) => i % column * spacing)
+                .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
+                .attr("fill", (d, i) => (i < 40 ? "#394147" : "#99c125"))
+                .attr("opacity", "1")
         }
 
         //circle grid
         let grid2 = () =>{
-        rects
-            .transition()
-            .delay((d, i) => 10 * i)
-            .duration(600)
-            .ease("elastic")
-            .attr("width", 20)
-            .attr("height", 20)
-            .attr("rx", "50%")
-            .attr("ry", "50%")
-            .attr("x", (d, i) => i % column * spacing)
-            .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-            .attr("fill", (d, i) => (i < 8 ? "none" : "#99c125"))
+            rects
+                .transition()
+                .delay((d, i) => 10 * i)
+                .duration(600)
+                .ease("elastic")
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("rx", "50%")
+                .attr("ry", "50%")
+                .attr("x", (d, i) => i % column * spacing)
+                .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
+                .attr("fill", (d, i) => (i < 8 ? "none" : "#99c125"))
         }
 
         //divide
@@ -161,7 +169,7 @@
                 .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
 
             //age
-            d3.selectAll('text.age')
+            d3v3.selectAll('text.age')
                 .transition()
                 .delay( (d,i) => 40*i ) 
                 .duration(900)
@@ -169,7 +177,7 @@
                 .attr("dx", -500)
 
             //city
-            d3.selectAll('text.city')
+            d3v3.selectAll('text.city')
                 .transition()
                 .delay( (d,i) => 40*i ) 
                 .duration(900)
@@ -179,50 +187,86 @@
 
         //bar chart
         let barChart = () => {
-        rects
-            .attr("rx", 0 )
-            .attr("ry", 0 )
-            .transition()
-            .delay( (d,i) => 20*i ) 
-            .duration(900)
-            .ease('elastic')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
-            .attr("x", (d,i) => 150 )
-            .attr("y", (d,i) => i * 17 )
-            .attr("width", (d,i) => d["age"])
-            .attr("height", (d,i) => 15)
-            .attr("fill", (d, i) => (i < 3 ? "#99c125" : "#394147"))
-            .attr("opacity", 1)
-            .attr("transform", "translate(0,0) rotate(0)")
-            .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+            rects
+                .attr("rx", 0 )
+                .attr("ry", 0 )
+                .transition()
+                .delay( (d,i) => 20*i ) 
+                .duration(900)
+                .ease('elastic')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
+                .attr("x", (d,i) => 150 )
+                .attr("y", (d,i) => i * 17 )
+                .attr("width", (d,i) => d["age"])
+                .attr("height", (d,i) => 15)
+                .attr("fill", (d, i) => (i < 3 ? "#99c125" : "#394147"))
+                .attr("opacity", 1)
+                .attr("transform", "translate(0,0) rotate(0)")
+                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
 
-        //age text
-        d3.selectAll('text.age')
-            .transition()
-            .delay( (d,i) => 20*i ) 
-            .duration(900)
-            .ease('elastic')
-            //align text right
-            .attr("text-anchor", "start")
-            .attr("dx", 160)
-            .attr("dy", (d,i)=> (i * 17) + 12)
-            .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//nly show 12 people
+            //age text
+            d3v3.selectAll('text.age')
+                .transition()
+                .delay( (d,i) => 20*i ) 
+                .duration(900)
+                .ease('elastic')
+                //align text right
+                .attr("text-anchor", "start")
+                .attr("dx", 160)
+                .attr("dy", (d,i)=> (i * 17) + 12)
+                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//nly show 12 people
 
-        //city text
-        d3.selectAll('text.city')
-            .transition()
-            .delay( (d,i) => 20*i ) 
-            .duration(900)
-            .ease('elastic')
-            //align text left
-            .attr("text-anchor", "end")
-            .attr("dx", 140)
-            .attr("dy", (d,i)=> (i * 17) + 12)
-            .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+            //city text
+            d3v3.selectAll('text.city')
+                .transition()
+                .delay( (d,i) => 20*i ) 
+                .duration(900)
+                .ease('elastic')
+                //align text left
+                .attr("text-anchor", "end")
+                .attr("dx", 140)
+                .attr("dy", (d,i)=> (i * 17) + 12)
+                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
 
 
         }
 
-        
+        // let scrolling = () => {
+        //     d3v3.select("body").transition()
+        //     .styleTween("color", function() { return d3.interpolate("green", "red"); })
+        // }
+        let scrolling = () => {
+            d3v3.select("#div8")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling = () => {
+            d3v3.select("#div8")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scatterAppear = () => {
+            d3v3.select("#scatterZoom")
+                .transition().duration(1000)
+                .style("opacity",1)
+            
+        }
+        let scatterUnappear = () => {
+            d3v3.select("#scatterZoom")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let fixedUnappear = () => {
+            d3v3.select(".fixed")
+                .classed("fixedHidden", true)
+                .classed("fixed", false)
+            
+        }
+        let fixedAppear = () => {
+            d3v3.select(".fixedHidden")
+            .classed("fixed", true)
+            .classed("fixedHidden", false)
+            
+        }
 
         //waypoints scroll constructor from git
         function scroll(n, offset, func1, func2){
@@ -237,19 +281,18 @@
             });
         };
 
+     
 
-        let circle = svg.selectAll("circle")
-        .data([32, 57, 293], function(d) { return d; });
 
-        circle.enter().append("circle")
-            .attr("cy", 60)
-            .attr("cx", function(d, i) { return i * 100 + 30; })
-            .attr("r", function(d) { return Math.sqrt(d); });
+        // let circle = svg.selectAll("circle")
+        // .data([32, 57, 293], function(d) { return d; });
 
-        let scrolling = () => {
-            d3.select("body").transition()
-            .styleTween("color", function() { return d3.interpolate("green", "red"); })
-        }
+        // circle.enter().append("circle")
+        //     .attr("cy", 60)
+        //     .attr("cx", function(d, i) { return i * 100 + 30; })
+        //     .attr("r", function(d) { return Math.sqrt(d); });
+
+       
 
         //create new Waypoints, triggering on element id, percent direction,
         // and trigger function on scroll
@@ -257,13 +300,15 @@
         // new scroll('div4', '75%', divide, grid);
         // new scroll('div6', '75%', barChart, divide);
         // new scroll('div8', '75%', divide, grid);
-        // new scroll('div4', '>80%', scrolling, grid); // scroll down makes green, otherwise is red
+        new scroll('div8', '60%', scrolling, unscrolling); 
+        new scroll('divX', '90%', scatterAppear, scatterUnappear); 
+        new scroll('divX', '90%', fixedUnappear, fixedAppear); 
         // new scroll('div2', '80%', textGrab, textLeave); 
 
         //initiate with grid on page load
         grid();
 
-  </script> -->
+  </script>
 
 
 </body>
