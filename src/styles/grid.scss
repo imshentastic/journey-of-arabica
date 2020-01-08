@@ -1,3 +1,4 @@
+
 .container {
     height: 100%;
     max-width: 300px;
@@ -9,4 +10,50 @@
     line-height: 1.5;
     left: 0px;
 
+}
+
+.container div {
+    height: 100%;
+    display: block;
+    padding: 0 35px;
+}
+
+.containerB {
+    height: 100%;
+    max-width: 300px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    height: 100%;
+    line-height: 1.5;
+    top: 60%;
+    left: 77%;
+}
+.containerB div {
+    height: 100%;
+    display: block;
+    padding: 0 35px;
+}
+
+#div8 {
+    opacity: 0;
+}
+
+.containerB #divX {
+    padding: 0;
+    width: 1px;
+}
+
+.fixed {
+    position: fixed;
+    max-width: 500px;
+    height: 500px;
+    top: 30%;
+    z-index: 20;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.fixedHidden {
+    position: absolute;
 }

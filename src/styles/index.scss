@@ -36,60 +36,30 @@ strong{
     margin: auto;
 }
 
-.container div {
-    height: 100%;
-    display: block;
-    padding: 0 35px;
-}
-
-.containerB {
-    height: 100%;
-    max-width: 300px;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    height: 100%;
-    line-height: 1.5;
-    top: 60%;
-    left: 77%;
-}
-.containerB div {
-    height: 100%;
-    display: block;
-    padding: 0 35px;
-}
-.fixed {
-    position: fixed;
-    max-width: 500px;
-    height: 500px;
-    top: 30%;
-    left: 30%;
-    z-index: 20;
-}
-.fixedHidden {
-    position: absolute;
-}
-
-
 #scatterZoom {
     position: fixed;
     bottom: 10%;
     width: 80vw;
     height: 80vh;
     top: 15%;
-    left: 10%;
     pointer-events: auto;
     display: flex;
     justify-content: center;
     opacity: 0;
 }
 
+.scatterAppear{
+    left: 10%;
+}
+
+.scatterUnappear {
+    left: 100%;
+}
+
 #scatterZoom > svg{
 
-    width: 62vw;
-    height: 70vh;
-    z-index: 110;
+    width: 80vw;
+    height: 72vh;
 }
 
 #viz {
@@ -105,13 +75,9 @@ strong{
 
 }
 .bubbles:hover {
-    stroke: slategray;
-}
-
-.rect {
 
 }
 
-#div8 {
-    opacity: 0;
-}
+
+
+

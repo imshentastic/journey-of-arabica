@@ -17,53 +17,59 @@
     <div id="graphic">
         <h1>Journey of Arabica</h1>
 
-        <div class="container">
-            <div id="div1">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+        <div class="grid">
+            <div class="container">
+                <div id="div1">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                </div>
+                <div id="div2">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                    <p></p>
+                </div>
+                <div id="div4">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                </div>
+                <div id="div6">
+                    <h2>Typically yields the best results when grown at <strong>high elevations</strong> (2,000 - 7,000 feet above sea level)</h2>
+                </div>
             </div>
-            <div id="div2">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <p></p>
+
+            
+
+            <div class="containerB">
+                <div id="div3">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                </div>
+                <div id="div5">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                    <p></p>
+                </div>
+                <div id="div7">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                </div>
+                <div id="div8">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                </div>
+                <div id="divX">
+                </div>
+
             </div>
-            <div id="div4">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-            </div>
-            <div id="div6">
-                <h2>Typically yields the best results when grown at <strong>high elevations</strong> (2,000 - 7,000 feet above sea level)</h2>
-            </div>
+
+                <div id="scatterZoom" class="scatterUnappear"></div>
+                <button onClick="update('var1')"></button>
+                <button onClick="update('var2')"></button>
         </div>
-
-        <div class="containerB">
-            <div id="div3">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-            </div>
-            <div id="div5">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                <p></p>
-            </div>
-            <div id="div7">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-            </div>
-            <div id="div8">
-                <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-            </div>
-            <div id="divX">
-            </div>
-
-        </div>
-
-            <div id="scatterZoom"></div>
 
         
     </div>
 
     <!-- vector set up with fixed container -->
+
     <div class="fixed">
         <svg id="viz" width="100%" height="100%">
             <!-- <ellipse cx="200" cy="100" rx="18" ry="25" fill="#71413E"/> -->
         </svg>
     </div>
-
 
 
     <script>
@@ -246,6 +252,9 @@
         }
         let scatterAppear = () => {
             d3v3.select("#scatterZoom")
+                .classed("scatterAppear", true)
+                .classed("scatterUnappear", false)
+            d3v3.select("#scatterZoom")
                 .transition().duration(1000)
                 .style("opacity",1)
             
@@ -254,6 +263,9 @@
             d3v3.select("#scatterZoom")
                 .transition().duration(1000)
                 .style("opacity",0)
+            d3v3.select("#scatterZoom")
+                .classed("scatterUnappear", true)
+                .classed("scatterAppear", false)
         }
         let fixedUnappear = () => {
             d3v3.select(".fixed")
