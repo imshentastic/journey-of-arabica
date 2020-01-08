@@ -9,8 +9,10 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="lib/d3v3.js"charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="lib/scatter.js"charset="utf-8"></script>
+    <script type="text/javascript" src="lib/scatter.js"charset="utf-8"></script>
     </head>
 
 <body>
@@ -55,9 +57,11 @@
 
             </div>
 
-                <div id="scatterZoom" class="scatterUnappear"></div>
-                <button onClick="update('var1')"></button>
-                <button onClick="update('var2')"></button>
+                <div id="scatterZoom" class="scatterUnappear">
+
+                    <button id = "toBeClicked" data-var1="Aroma" data-var2="Flavor"></button>
+                </div>
+                
         </div>
 
         
@@ -98,7 +102,6 @@
             'city': i < 3 ? 'San Diegan' : 'Out of towners', 
             'age': randnum(25, 65)
         }));
-        // console.log(our_data)
 
         //create group and join data
         // each object in array assigned a <g>
@@ -109,6 +112,7 @@
 
         //create rectangles
         // let rects = group.append("rect")
+
 
         //city data
         d3v3.selectAll('g')

@@ -41,7 +41,7 @@ strong{
     bottom: 10%;
     width: 80vw;
     height: 80vh;
-    top: 15%;
+    bottom: 5%;
     pointer-events: auto;
     display: flex;
     justify-content: center;
@@ -59,7 +59,8 @@ strong{
 #scatterZoom > svg{
 
     width: 80vw;
-    height: 72vh;
+    height: 80vh;
+
 }
 
 #viz {
@@ -78,6 +79,14 @@ strong{
 
 }
 
+.bubbleClicked {
+    opacity: 1;
+}
 
+.bubbleUnclicked {
+    opacity: 0.01;
+}
 
-
+.transform > text {
+    font-size: 28px;
+}
