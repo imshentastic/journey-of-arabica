@@ -16,43 +16,42 @@
     </head>
 
 <body>
+    
     <div id="graphic">
         <h1>Journey of Arabica</h1>
-        
         <div class="grid">
+            
+            
             <div class="container">
                 <div id="div1">
                     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 </div>
-                <div id="div2">
+                <div id="div3">
                     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                     <p></p>
                 </div>
-                <div id="div4">
+                <div id="div5">
                     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                 </div>
-                <div id="div6">
+                <div id="div7">
                     <h2>Typically yields the best results when grown at <strong>high elevations</strong> (2,000 - 7,000 feet above sea level)</h2>
                 </div>
             </div>
 
-            
-
             <div class="containerB">
-                <div id="div3">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                <div id="div2" class="fade2">
+                    <h2>There are over 100 coffee species in the world, only two are common. 70% of all coffee produced in the world is Arabica, with the other 30% being Robusta. </h2>
                 </div>
-                <div id="div5">
+                <div id="div4" class="fade4">
                     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
                     <p></p>
                 </div>
-                <div id="div7">
+                <div id="div6" class="fade6">
                     <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                    <p></p>
                 </div>
-                <div id="div8">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                </div>
-                <div id="divX">
+                
+                <div id="divX" class="fade">
                 </div>
 
             </div>
@@ -67,7 +66,6 @@
         
     </div>
 
-    <!-- vector set up with fixed container -->
 
     <div class="fixed">
         <svg id="viz" width="100%" height="100%">
@@ -80,28 +78,28 @@
         let svg = d3v3.select("svg"); // select all svg
 
         // assign svg width and height
-        svg.attr('width',500)
-            .attr('height',500)
+        svg.attr('width',1000)
+            .attr('height',1000)
 
         //set up grid spacing
-        let spacing = 40;
+        let spacing = 70;
         let rows = 10;
         let column = 10;
         let randnum = (min,max) => Math.round( Math.random() * (max-min) + min );
 
 
 
-        //Create an array of objects
-        // let our_data = d3v3.range(20).map(i => 
-        // ({ 'device': i < 5 ? 'ios' : 'android', 
-        //     'city': i < 3 ? 'San Diegan' : 'Out of towners', 
-        //     'age': randnum(25, 65)
-        // }));
-        let our_data = d3v3.range(2).map(i => 
-        ({ 'device': i < 5 ? 'ios' : 'android', 
-            'city': i < 3 ? 'San Diegan' : 'Out of towners', 
-            'age': randnum(25, 65)
+        // Create an array of objects
+        let countryArray = ["Brazil", "Colombia", "Ethiopia", "Honduras", "Peru", "Mexico", "Guatemala", "China", "Nicaragua", "Other"];
+        let productionArray = [41, 14.3,7.4,6.5,4.5, 3.5, 2.3, 2.3, 11.2];
+        let speciesArray = ["Bourbon", "Caturra", "Heirloom", "Gesha", "Pacamara", "SL28/SL34", "Typica"];
+        let our_data = d3v3.range(10).map(i => 
+        ({ 'type': i < 8 ? 'Arabica' : 'Robusta', 
+            'country': countryArray[i], 
+            'production': productionArray[i],
+            'species': speciesArray[i]
         }));
+        
 
         //create group and join data
         // each object in array assigned a <g>
@@ -111,92 +109,87 @@
             .append("g")
 
         //create rectangles
-        // let rects = group.append("rect")
+        let rects = group.append("rect")
 
-
-        //city data
+        //country data
         d3v3.selectAll('g')
             .append("text")
-            .text( (d) => d["city"])
+            .text( (d) => d["country"])
             .attr("fill", "gray")
-            .attr("class", "city")
+            .attr("class", "country")
             .attr("dx", -500)
 
-        //age data
+        //production data
         d3v3.selectAll('g')
             .append("text")
-            .text( (d) => d["age"] )
+            .text( (d) => d["production"] )
             .attr("fill", "#fff")
-            .attr("class", "age")
+            .attr("class", "production")
+            .attr("dx", -500)
+
+        d3v3.selectAll('g')
+            .append("text")
+            .text( (d) => d["species"] )
+            .attr("fill", "#fff")
+            .attr("class", "species")
             .attr("dx", -500)
 
         // square grid
         let grid = () =>{
+            d3v3.selectAll('text.production')
+                .attr("opacity",  0 )
+  
+            d3v3.selectAll('text.country')
+                .attr("opacity",  0 )
             rects
                 .transition()
                 .delay((d, i) => 10 * i)
                 .duration(600)
                 .ease("elastic")
-                .attr("width", 20)
-                .attr("height", 20)
+                .attr("width", 40)
+                .attr("height", 40)
                 .attr("rx", 5)
                 .attr("ry", 5)
                 .attr("x", (d, i) => i % column * spacing)
                 .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
                 .attr("fill", (d, i) => (i < 40 ? "#394147" : "#99c125"))
-                .attr("opacity", "1")
+                .attr("opacity", "1") //starts all colored
         }
 
         //circle grid
         let grid2 = () =>{
+            d3v3.selectAll('text.production')
+                .attr("opacity",  0 )
+  
+            d3v3.selectAll('text.country')
+                .attr("opacity",  0 )
             rects
                 .transition()
                 .delay((d, i) => 10 * i)
                 .duration(600)
                 .ease("elastic")
-                .attr("width", 20)
-                .attr("height", 20)
+                .attr("width", 40)
+                .attr("height", 40)
                 .attr("rx", "50%")
                 .attr("ry", "50%")
                 .attr("x", (d, i) => i % column * spacing)
                 .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-                .attr("fill", (d, i) => (i < 8 ? "none" : "#99c125"))
+                .attr("fill", (d, i) => (i < 2 ? "none" : "#99c125")) // 2 not colored
         }
 
         //divide
-        let divide = () => {
-            rects.transition()
-                .delay((d, i) => 10 * i)
-                .duration(600)
-                .ease("elastic")
-                .attr("width", 10)
-                .attr("height", 10)
-                .attr("rx", 0)
-                .attr("ry", 0)
-                .attr("x", (d, i) => d['device'] == "ios" ? randnum(100, 150) :  randnum(300, 350))
-                .attr("y", (d, i) => i * 20)
-                .attr("fill", (d, i) => d['device'] == "ios" ? "#394147": "#99c125")
-                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
-
-            //age
-            d3v3.selectAll('text.age')
-                .transition()
-                .delay( (d,i) => 40*i ) 
-                .duration(900)
-                .ease('elastic')
-                .attr("dx", -500)
-
-            //city
-            d3v3.selectAll('text.city')
-                .transition()
-                .delay( (d,i) => 40*i ) 
-                .duration(900)
-                .ease('elastic')
-                .attr("dx", -500)
-        }
+        
+        
 
         //bar chart
         let barChart = () => {
+            d3v3.selectAll('text.production')
+                .attr("opacity",  0 )
+  
+            d3v3.selectAll('text.country')
+                .attr("opacity",  0 )
+            d3v3.selectAll('text.species')
+                .attr("opacity", 0)
             rects
                 .attr("rx", 0 )
                 .attr("ry", 0 )
@@ -204,39 +197,86 @@
                 .delay( (d,i) => 20*i ) 
                 .duration(900)
                 .ease('elastic')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
-                .attr("x", (d,i) => 150 )
-                .attr("y", (d,i) => i * 17 )
-                .attr("width", (d,i) => d["age"])
-                .attr("height", (d,i) => 15)
-                .attr("fill", (d, i) => (i < 3 ? "#99c125" : "#394147"))
+                .attr("x", (d,i) => 220 )
+                .attr("y", (d,i) => i * 40 )
+                .attr("width", (d,i) => d["production"]*9)
+                .attr("height", (d,i) => 25)
+                .attr("fill", (d, i) => "#99c225")
                 .attr("opacity", 1)
                 .attr("transform", "translate(0,0) rotate(0)")
-                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )//only show 10 countries
 
-            //age text
-            d3v3.selectAll('text.age')
-                .transition()
-                .delay( (d,i) => 20*i ) 
-                .duration(900)
-                .ease('elastic')
-                //align text right
+            //production text
+            d3v3.selectAll('text.production')
+                // .transition()
+                // .delay( (d,i) => 20*i ) 
+                // .duration(900)
+                // .ease('elastic')
+                .attr("x", (d,i) => 193 )
+                .attr("y", (d,i) => i * 23+4 )
                 .attr("text-anchor", "start")
-                .attr("dx", 160)
-                .attr("dy", (d,i)=> (i * 17) + 12)
-                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//nly show 12 people
+                .attr("dx", 30)
+                .attr("dy", (d,i)=> (i * 17)+14)
+                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )//nly show 10 countries
+                .style("font-size", "12px")
+  
+                
 
-            //city text
-            d3v3.selectAll('text.city')
-                .transition()
-                .delay( (d,i) => 20*i ) 
-                .duration(900)
-                .ease('elastic')
-                //align text left
+            //country text
+            d3v3.selectAll('text.country')
+                // .transition()
+                // .delay( (d,i) => 20*i ) 
+                // .duration(900)
+                // .ease('elastic')
+                .attr("x", (d,i) => 200 )
+                .attr("y", (d,i) => i * 19 )
                 .attr("text-anchor", "end")
-                .attr("dx", 140)
-                .attr("dy", (d,i)=> (i * 17) + 12)
-                .attr("opacity", (d,i)=> i < 12 ? 1 : 0 )//only show 12 people
+                .attr("dx", 0)
+                .attr("dy", (d,i)=> (i * 17)+14)
+                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )//only show 10 people
+                .style("font-size", "19px")
 
+
+
+        }
+
+        let divide = () => {
+            d3v3.selectAll('text.production')
+                .attr("opacity",  0 )
+  
+            d3v3.selectAll('text.country')
+                .attr("opacity",  0 )
+
+            rects.transition()
+                .delay((d, i) => 10 * i)
+                .duration(600)
+                .ease("elastic")
+                .attr("width", 40)
+                .attr("height", 40)
+                .attr("rx", 0)
+                .attr("ry", 0)
+                .attr("x", (d, i) => 65+i * 97)
+                .attr("y", (d, i) => 20)
+                .attr("fill", (d, i) => `#394141`)
+                .attr("opacity", (d,i)=> i < 7 ? 1 : 0 )//only show 7 species
+
+            //species
+            d3v3.selectAll('text.species')
+                // .transition()
+                // .delay( (d,i) => 40*i ) 
+                // .duration(900)
+                // .ease('elastic')
+                .attr("text-anchor", "start")
+                .attr("dx", (d,i)=> (i * 100)+45)
+                .attr("dy", 85)
+                .attr("fill","black")
+                .style("font-size", "19px")
+                .attr("text-align", "center")
+                
+
+            
+
+            
 
         }
 
@@ -244,13 +284,33 @@
         //     d3v3.select("body").transition()
         //     .styleTween("color", function() { return d3.interpolate("green", "red"); })
         // }
-        let scrolling = () => {
-            d3v3.select("#div8")
+        let scrolling2 = () => {
+            d3v3.select(".fade2")
                 .transition().duration(1000)
                 .style("opacity",1)
         }
-        let unscrolling = () => {
-            d3v3.select("#div8")
+        let unscrolling2 = () => {
+            d3v3.select(".fade2")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scrolling4 = () => {
+            d3v3.select(".fade4")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling4 = () => {
+            d3v3.select(".fade4")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scrolling6 = () => {
+            d3v3.select(".fade6")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling6 = () => {
+            d3v3.select(".fade6")
                 .transition().duration(1000)
                 .style("opacity",0)
         }
@@ -312,12 +372,13 @@
 
         //create new Waypoints, triggering on element id, percent direction,
         // and trigger function on scroll
-        // new scroll('div2', '75%', grid2, grid);
-        // new scroll('div4', '75%', divide, grid);
-        // new scroll('div6', '75%', barChart, divide);
-        // new scroll('div8', '75%', divide, grid);
-        new scroll('div8', '60%', scrolling, unscrolling); 
-        new scroll('divX', '90%', scatterAppear, scatterUnappear); 
+        new scroll('div2', '20%', grid2, grid);
+        new scroll('div2', '50%', scrolling2, unscrolling2); 
+        new scroll('div4', '50%', divide, grid2);
+        new scroll('div4', '50%', scrolling4, unscrolling4); 
+        new scroll('div6', '50%', barChart, divide);
+        new scroll('div6', '50%', scrolling6, unscrolling6); 
+        new scroll('divX', '60%', scatterAppear, scatterUnappear); 
         new scroll('divX', '90%', fixedUnappear, fixedAppear); 
         // new scroll('div2', '80%', textGrab, textLeave); 
 

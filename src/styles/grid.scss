@@ -9,51 +9,121 @@
     height: 100%;
     line-height: 1.5;
     left: 0px;
+    z-index: 10;
 
 }
 
 .container div {
-    height: 100%;
+    height: 50%;
     display: block;
     padding: 0 35px;
+    
 }
 
 .containerB {
     height: 100%;
     max-width: 300px;
     width: 100%;
-    margin: 0;
+    margin-top: 10%;
     padding: 0;
     position: absolute;
     height: 100%;
     line-height: 1.5;
-    top: 60%;
+    top: 90%;
     left: 77%;
+    z-index: 10;
+
 }
 .containerB div {
-    height: 100%;
+    height: 70%;
     display: block;
     padding: 0 35px;
-}
-
-#div8 {
     opacity: 0;
 }
 
 .containerB #divX {
     padding: 0;
+    padding-top: 20%;
     width: 1px;
 }
 
 .fixed {
     position: fixed;
-    max-width: 500px;
-    height: 500px;
-    top: 30%;
-    z-index: 20;
+    width: 100%;
+    height: 100%;
+    top: 25%;
+    z-index: 2;
     left: 50%;
     transform: translate(-50%, 0);
+    pointer-events: none;
+
 }
 .fixedHidden {
     position: absolute;
 }
+
+#viz {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    margin-left: 20%;
+}
+
+
+
+
+
+
+.parallax {
+    height: 500px;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-perspective: 300px;
+    perspective: 300px;
+  }
+
+  .parallax__group {
+    position: relative;
+    height: 500px; 
+    height: 100vh;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .parallax__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .parallax__group {
+    -webkit-transition: transform 0.5s ease-in;
+    transition: transform 0.5s;
+  }
+
+  .parallax__layer--fore {
+    -webkit-transform: translateZ(90px) scale(.7);
+    transform: translateZ(90px) scale(.7);
+    z-index: 1;
+  }
+
+  .parallax__layer--base {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    z-index: 4;
+  }
+
+  .parallax__layer--back {
+    -webkit-transform: translateZ(-300px) scale(2);
+    transform: translateZ(-300px) scale(2);
+    z-index: 3;
+  }
+
+  .parallax__layer--deep {
+    -webkit-transform: translateZ(-600px) scale(3);
+    transform: translateZ(-600px) scale(3);
+    z-index: 2;
+  }
