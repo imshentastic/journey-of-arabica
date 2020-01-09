@@ -38,9 +38,8 @@ strong{
 
 #scatterZoom {
     position: fixed;
-    bottom: 10%;
-    width: 80vw;
-    height: 80vh;
+    width: 82vw;
+    height: 85vh;
     bottom: 5%;
     pointer-events: auto;
     display: flex;
@@ -60,7 +59,6 @@ strong{
 
     width: 80vw;
     height: 80vh;
-
 }
 
 #viz {
@@ -71,11 +69,13 @@ strong{
 }
 
 .bubbles {
-    stroke-width: 2px;
+
+
 
 
 }
 .bubbles:hover {
+
 
 }
 
