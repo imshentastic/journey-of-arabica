@@ -12,42 +12,41 @@
     <script src="https://d3js.org/d3-color.v1.min.js"></script>
     <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://kit.fontawesome.com/fff9f519c7.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="lib/scatter.js"charset="utf-8"></script>
     </head>
 
 <body>
-    
     <div id="graphic">
-        <h1>Journey of Arabica</h1>
+        <div class="title">
+            <h3>Journey of </h3>
+            <h1>Arabica</h1>
+            <br>
+                <h5>
+                    <a href="https://www.linkedin.com/in/mike-shen" class="link"rel="noopener noreferrer" target="_blank" style="color: inherit"><i class="fab fa-linkedin-in icon-large fa-lg"></i></a>
+                    <a href="https://github.com/imshentastic" rel="noopener noreferrer" target="_blank" style="color: inherit"><i class="fab fa-github fa-lg"></i></a>
+                    <a href="https://angel.co/mike-shen-4" rel="noopener noreferrer" target="_blank" style="color: inherit"><i class="fab fa-angellist fa-lg"></i></a>
+                    <a href="#" rel="noopener noreferrer" target="_blank" style="color: inherit"><i class="fas fa-user-circle fa-lg"></i></a>
+                </h5>
+            <h4>Scroll to begin</h4>
+        </div>
         <div class="grid">
-            
-            
-            <div class="container">
-                <div id="div1">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                </div>
-                <div id="div3">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                    <p></p>
-                </div>
-                <div id="div5">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
-                </div>
-                <div id="div7">
-                    <h2>Typically yields the best results when grown at <strong>high elevations</strong> (2,000 - 7,000 feet above sea level)</h2>
-                </div>
-            </div>
 
             <div class="containerB">
+                <div id="divInitial" class="fadeInitial">
+                </div>
+                <div id="div0" class="fade0">
+                    <h2>There are over 100 coffee species in the world... <br> But only two are common - Arabica and Robusta.</h2>
+                </div>
                 <div id="div2" class="fade2">
-                    <h2>There are over 100 coffee species in the world, only two are common. 70% of all coffee produced in the world is Arabica, with the other 30% being Robusta. </h2>
+                    <h2>70% of all coffee produced in the world is Arabica, with the other 30% being Robusta. </h2>
                 </div>
                 <div id="div4" class="fade4">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                    <h2>There are 7 main types of Arabica species.</h2>
                     <p></p>
                 </div>
                 <div id="div6" class="fade6">
-                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h2>
+                    <h2>Brazil makes 41M 60kg bags of Arabica coffee per year. <br>That’s about 42% of the world’s total Arabica coffee production!</h2>
                     <p></p>
                 </div>
                 
@@ -55,24 +54,20 @@
                 </div>
 
             </div>
-
+            
                 <div id="scatterZoom" class="scatterUnappear">
-                    <button id = "toBeClicked" data-var1="Acidity" data-var2="Acidity"></button>
-                    <button id = "zoomOut" ></button>
+                    <!-- <button id = "toBeClicked" data-var1="Body" data-var2="Flavor"></button> -->
                 </div>
-                
-        </div>
-
-        
+                <select id="xSelection" class="select-css"></select>
+                <select id="ySelection" class="select-css"></select>
+        </div> 
     </div>
-
 
     <div class="fixed">
         <svg id="viz" width="100%" height="100%">
             <!-- <ellipse cx="200" cy="100" rx="18" ry="25" fill="#71413E"/> -->
         </svg>
     </div>
-
 
     <script>
         let svg = d3v3.select("svg"); // select all svg
@@ -82,17 +77,17 @@
             .attr('height',1000)
 
         //set up grid spacing
-        let spacing = 70;
+        let spacing = document.getElementById("scatterZoom").clientWidth/13;
         let rows = 10;
-        let column = 10;
-        let randnum = (min,max) => Math.round( Math.random() * (max-min) + min );
+        let column = 5;
 
 
 
         // Create an array of objects
         let countryArray = ["Brazil", "Colombia", "Ethiopia", "Honduras", "Peru", "Mexico", "Guatemala", "China", "Nicaragua", "Other"];
-        let productionArray = [41, 14.3,7.4,6.5,4.5, 3.5, 2.3, 2.3, 11.2];
+        let productionArray = [41, 14.3,7.4,6.5,4.5, 4.4, 3.5, 2.3, 2.3, 11.2];
         let speciesArray = ["Bourbon", "Caturra", "Heirloom", "Gesha", "Pacamara", "SL28/SL34", "Typica"];
+   
         let our_data = d3v3.range(10).map(i => 
         ({ 'type': i < 8 ? 'Arabica' : 'Robusta', 
             'country': countryArray[i], 
@@ -110,6 +105,8 @@
 
         //create rectangles
         let rects = group.append("rect")
+            // .fill("url(coffee-beans.svg)")
+            
 
         //country data
         d3v3.selectAll('g')
@@ -141,23 +138,27 @@
   
             d3v3.selectAll('text.country')
                 .attr("opacity",  0 )
+            d3v3.selectAll('text.species')
+                .attr("opacity",  0 )
             rects
                 .transition()
                 .delay((d, i) => 10 * i)
                 .duration(600)
-                .ease("elastic")
-                .attr("width", 40)
-                .attr("height", 40)
-                .attr("rx", 5)
-                .attr("ry", 5)
+                // .ease("elastic")
+                .attr("width", "4vw")
+                .attr("height", "5vw")
+                .attr("rx", "50%")
+                .attr("ry", "50%")
                 .attr("x", (d, i) => i % column * spacing)
-                .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-                .attr("fill", (d, i) => (i < 40 ? "#394147" : "#99c125"))
+                .attr("y", (d, i) => Math.floor(i / 5) % rows * spacing)
+                .attr("fill", (d, i) => (i < 40 ? "#56302e" : "#99c125"))
                 .attr("opacity", "1") //starts all colored
         }
 
         //circle grid
         let grid2 = () =>{
+            d3v3.selectAll('text.species')
+                .attr("opacity",  0 )
             d3v3.selectAll('text.production')
                 .attr("opacity",  0 )
   
@@ -167,20 +168,54 @@
                 .transition()
                 .delay((d, i) => 10 * i)
                 .duration(600)
-                .ease("elastic")
-                .attr("width", 40)
-                .attr("height", 40)
+                // .ease("elastic")
+                .attr("width", "4vw")
+                .attr("height", "5vw")
                 .attr("rx", "50%")
                 .attr("ry", "50%")
                 .attr("x", (d, i) => i % column * spacing)
-                .attr("y", (d, i) => Math.floor(i / 10) % rows * spacing)
-                .attr("fill", (d, i) => (i < 2 ? "none" : "#99c125")) // 2 not colored
+                .attr("y", (d, i) => Math.floor(i / 5) % rows * spacing)
+                .attr("fill", (d, i) => (i < 3 ? "#bcb9b8" : "#56302e")) // 2 not colored
         }
 
-        //divide
-        
-        
 
+        let divide = () => {
+            d3v3.selectAll('text.production')
+                .attr("opacity",  0 )
+  
+            d3v3.selectAll('text.country')
+                .attr("opacity",  0 )
+            //species
+            
+
+            rects.transition()
+                .delay((d, i) => 10 * i)
+                .duration(600)
+                // .ease("elastic")
+                .attr("width", "4vw")
+                .attr("height", "5vw")
+                .attr("rx", "50%")
+                .attr("ry", "50%")
+                .attr("x", (d, i) => i < 4 ? 65+i * 97 : i * 113-350)
+                .attr("y", (d, i) => i < 4 ? 20 : 150)
+                .attr("fill", (d, i) => `#394141`)
+                .attr("opacity", (d,i)=> i < 7 ? 1 : 0 )//only show 7 species
+            d3v3.selectAll('text.species')
+                // .transition()
+                // .delay( (d,i) => 40*i ) 
+                // .duration(900)
+                // .ease('elastic')
+                .attr("text-anchor", "start")
+                .attr("dx", (d, i) => i < 4 ? 67+i * 99 : i * 115-360)
+                .attr("dy", (d, i) => i < 4 ? 15 : 143)
+                .attr("fill","black")
+                .style("font-size", "19px")
+                .attr("text-align", "center")
+                .attr("opacity",1)
+
+        }
+
+        let constant = document.getElementById("scatterZoom").clientWidth/30
         //bar chart
         let barChart = () => {
             d3v3.selectAll('text.production')
@@ -196,11 +231,11 @@
                 .transition()
                 .delay( (d,i) => 20*i ) 
                 .duration(900)
-                .ease('elastic')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
-                .attr("x", (d,i) => 220 )
+                // .ease('circle')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
+                .attr("x", (d,i) => 120 )
                 .attr("y", (d,i) => i * 40 )
-                .attr("width", (d,i) => d["production"]*9)
-                .attr("height", (d,i) => 25)
+                .attr("width", (d,i) => d["production"]* constant/4)
+                .attr("height", (d,i) => constant/2)
                 .attr("fill", (d, i) => "#99c225")
                 .attr("opacity", 1)
                 .attr("transform", "translate(0,0) rotate(0)")
@@ -212,10 +247,10 @@
                 // .delay( (d,i) => 20*i ) 
                 // .duration(900)
                 // .ease('elastic')
-                .attr("x", (d,i) => 193 )
+                .attr("x", (d,i) => 173 )
                 .attr("y", (d,i) => i * 23+4 )
                 .attr("text-anchor", "start")
-                .attr("dx", 30)
+                .attr("dx", -50)
                 .attr("dy", (d,i)=> (i * 17)+14)
                 .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )//nly show 10 countries
                 .style("font-size", "12px")
@@ -228,62 +263,49 @@
                 // .delay( (d,i) => 20*i ) 
                 // .duration(900)
                 // .ease('elastic')
-                .attr("x", (d,i) => 200 )
-                .attr("y", (d,i) => i * 19 )
+                .attr("x", (d,i) => 173 )
+                .attr("y", (d,i) => i * 23 +4)
                 .attr("text-anchor", "end")
-                .attr("dx", 0)
-                .attr("dy", (d,i)=> (i * 17)+14)
-                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )//only show 10 people
-                .style("font-size", "19px")
+                .attr("dx", -60)
+                .attr("dy", (d,i)=> (i * 17) +14)
+                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )
+                .style("font-size", "23px")
 
 
 
         }
 
-        let divide = () => {
-            d3v3.selectAll('text.production')
-                .attr("opacity",  0 )
-  
-            d3v3.selectAll('text.country')
-                .attr("opacity",  0 )
-
-            rects.transition()
-                .delay((d, i) => 10 * i)
-                .duration(600)
-                .ease("elastic")
-                .attr("width", 40)
-                .attr("height", 40)
-                .attr("rx", 0)
-                .attr("ry", 0)
-                .attr("x", (d, i) => 65+i * 97)
-                .attr("y", (d, i) => 20)
-                .attr("fill", (d, i) => `#394141`)
-                .attr("opacity", (d,i)=> i < 7 ? 1 : 0 )//only show 7 species
-
-            //species
-            d3v3.selectAll('text.species')
-                // .transition()
-                // .delay( (d,i) => 40*i ) 
-                // .duration(900)
-                // .ease('elastic')
-                .attr("text-anchor", "start")
-                .attr("dx", (d,i)=> (i * 100)+45)
-                .attr("dy", 85)
-                .attr("fill","black")
-                .style("font-size", "19px")
-                .attr("text-align", "center")
-                
-
-            
-
-            
-
+        let initialGrid = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
         }
-
-        // let scrolling = () => {
-        //     d3v3.select("body").transition()
-        //     .styleTween("color", function() { return d3.interpolate("green", "red"); })
-        // }
+        let uninitialGrid = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scrollingTitle = () => {
+            d3v3.select(".title")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let unscrollingTitle = () => {
+            d3v3.select(".title")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+   
+        let scrolling0 = () => {
+            d3v3.select(".fade0")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling0 = () => {
+            d3v3.select(".fade0")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
         let scrolling2 = () => {
             d3v3.select(".fade2")
                 .transition().duration(1000)
@@ -321,15 +343,28 @@
             d3v3.select("#scatterZoom")
                 .transition().duration(1000)
                 .style("opacity",1)
+            d3v3.select("#xSelection")
+                .transition().duration(1000)
+                .style("opacity",1)
+            d3v3.select("#ySelection")
+                .transition().duration(1000)
+                .style("opacity",1)
             
         }
         let scatterUnappear = () => {
             d3v3.select("#scatterZoom")
-                .transition().duration(1000)
-                .style("opacity",0)
-            d3v3.select("#scatterZoom")
                 .classed("scatterUnappear", true)
                 .classed("scatterAppear", false)
+            d3v3.select("#scatterZoom")
+                .transition().duration(1000)
+                .style("opacity",0)
+            
+            d3v3.select("#xSelection")
+                .transition().duration(1000)
+                .style("opacity",0)
+            d3v3.select("#ySelection")
+                .transition().duration(1000)
+                .style("opacity",0)
         }
         let fixedUnappear = () => {
             d3v3.select(".fixed")
@@ -372,12 +407,19 @@
 
         //create new Waypoints, triggering on element id, percent direction,
         // and trigger function on scroll
-        new scroll('div2', '20%', grid2, grid);
-        new scroll('div2', '50%', scrolling2, unscrolling2); 
+        new scroll('divInitial', '50%', scrollingTitle, unscrollingTitle);
+        new scroll('div0', '100%', scrolling0, unscrolling0);
+        new scroll('div0', '20%', unscrolling0, scrolling0);
+        new scroll('div0', '50%', initialGrid,uninitialGrid);
+        new scroll('div2', '50%', grid2, grid);
+        new scroll('div2', '100%', scrolling2, unscrolling2); 
+        new scroll('div2', '20%', unscrolling2, scrolling2); 
         new scroll('div4', '50%', divide, grid2);
-        new scroll('div4', '50%', scrolling4, unscrolling4); 
+        new scroll('div4', '100%', scrolling4, unscrolling4); 
+        new scroll('div4', '20%', unscrolling4, scrolling4); 
         new scroll('div6', '50%', barChart, divide);
-        new scroll('div6', '50%', scrolling6, unscrolling6); 
+        new scroll('div6', '100%', scrolling6, unscrolling6); 
+        new scroll('div6', '20%', unscrolling6, scrolling6); 
         new scroll('divX', '60%', scatterAppear, scatterUnappear); 
         new scroll('divX', '90%', fixedUnappear, fixedAppear); 
         // new scroll('div2', '80%', textGrab, textLeave); 
