@@ -55,9 +55,7 @@
 
             </div>
             
-                <div id="scatterZoom" class="scatterUnappear">
-                    <!-- <button id = "toBeClicked" data-var1="Body" data-var2="Flavor"></button> -->
-                </div>
+                <div id="scatterZoom" class="scatterUnappear"></div>
                 <select id="xSelection" class="select-css"></select>
                 <select id="ySelection" class="select-css"></select>
         </div> 
@@ -65,7 +63,6 @@
 
     <div class="fixed">
         <svg id="viz" width="100%" height="100%">
-            <!-- <ellipse cx="200" cy="100" rx="18" ry="25" fill="#71413E"/> -->
         </svg>
     </div>
 
@@ -81,8 +78,6 @@
         let rows = 10;
         let column = 5;
 
-
-
         // Create an array of objects
         let countryArray = ["Brazil", "Colombia", "Ethiopia", "Honduras", "Peru", "Mexico", "Guatemala", "China", "Nicaragua", "Other"];
         let productionArray = [41, 14.3,7.4,6.5,4.5, 4.4, 3.5, 2.3, 2.3, 11.2];
@@ -94,10 +89,7 @@
             'production': productionArray[i],
             'species': speciesArray[i]
         }));
-        
-
         //create group and join data
-        // each object in array assigned a <g>
         let group = svg.selectAll('g')
             .data(our_data)
             .enter()
@@ -107,7 +99,6 @@
         let rects = group.append("rect")
             // .fill("url(coffee-beans.svg)")
             
-
         //country data
         d3v3.selectAll('g')
             .append("text")
@@ -144,7 +135,6 @@
                 .transition()
                 .delay((d, i) => 10 * i)
                 .duration(600)
-                // .ease("elastic")
                 .attr("width", "4vw")
                 .attr("height", "5vw")
                 .attr("rx", "50%")
@@ -168,7 +158,6 @@
                 .transition()
                 .delay((d, i) => 10 * i)
                 .duration(600)
-                // .ease("elastic")
                 .attr("width", "4vw")
                 .attr("height", "5vw")
                 .attr("rx", "50%")
@@ -231,7 +220,6 @@
                 .transition()
                 .delay( (d,i) => 20*i ) 
                 .duration(900)
-                // .ease('circle')//linear, quad, cubic, sin, exp, circle, elastic, back, bounce
                 .attr("x", (d,i) => 120 )
                 .attr("y", (d,i) => i * 40 )
                 .attr("width", (d,i) => d["production"]* constant/4)
@@ -243,26 +231,16 @@
 
             //production text
             d3v3.selectAll('text.production')
-                // .transition()
-                // .delay( (d,i) => 20*i ) 
-                // .duration(900)
-                // .ease('elastic')
                 .attr("x", (d,i) => 173 )
                 .attr("y", (d,i) => i * 23+4 )
                 .attr("text-anchor", "start")
                 .attr("dx", -50)
                 .attr("dy", (d,i)=> (i * 17)+14)
-                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )//nly show 10 countries
+                .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )
                 .style("font-size", "12px")
-  
-                
 
             //country text
             d3v3.selectAll('text.country')
-                // .transition()
-                // .delay( (d,i) => 20*i ) 
-                // .duration(900)
-                // .ease('elastic')
                 .attr("x", (d,i) => 173 )
                 .attr("y", (d,i) => i * 23 +4)
                 .attr("text-anchor", "end")
@@ -270,9 +248,6 @@
                 .attr("dy", (d,i)=> (i * 17) +14)
                 .attr("opacity", (d,i)=> i < 10 ? 1 : 0 )
                 .style("font-size", "23px")
-
-
-
         }
 
         let initialGrid = () => {
@@ -379,7 +354,7 @@
             
         }
 
-        //waypoints scroll constructor from git
+        //waypoints scroll constructor
         function scroll(n, offset, func1, func2){
             // create new Waypoint at specified ElementId
             return new Waypoint({
@@ -391,19 +366,6 @@
             offset: offset
             });
         };
-
-     
-
-
-        // let circle = svg.selectAll("circle")
-        // .data([32, 57, 293], function(d) { return d; });
-
-        // circle.enter().append("circle")
-        //     .attr("cy", 60)
-        //     .attr("cx", function(d, i) { return i * 100 + 30; })
-        //     .attr("r", function(d) { return Math.sqrt(d); });
-
-       
 
         //create new Waypoints, triggering on element id, percent direction,
         // and trigger function on scroll
@@ -422,12 +384,8 @@
         new scroll('div6', '20%', unscrolling6, scrolling6); 
         new scroll('divX', '60%', scatterAppear, scatterUnappear); 
         new scroll('divX', '90%', fixedUnappear, fixedAppear); 
-        // new scroll('div2', '80%', textGrab, textLeave); 
 
-        //initiate with grid on page load
         grid();
 
   </script>
-
-
 </body>
