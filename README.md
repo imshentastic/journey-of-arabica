@@ -3,7 +3,7 @@
 
 Journey of Arabica is a guided visualization of how Arabica coffee is created and made, as well as offering insight on various properties of Arabica coffee from around the world. The website features a single-page app that immerses the user in the creation of coffee while offering valuable statistics. Coffee bean review dataset was gathered from https://database.coffeeinstitute.org/
 
-![Demo](/assets/images/JoA "Demo")
+![Demo](/assets/images/JoA.gif "Demo")
 
 **2. Functionality**
 
