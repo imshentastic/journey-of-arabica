@@ -1,12 +1,15 @@
 **1. Background and Overview**
+![Demo](/assets/images/JoA.png "Title")
 
 Journey of Arabica is a guided visualization of how Arabica coffee is created and made, as well as offering insight on various properties of Arabica coffee from around the world. The website features a single-page app that immerses the user in the creation of coffee while offering valuable statistics. Coffee bean review dataset was gathered from https://database.coffeeinstitute.org/
 
-**2. Functionality and MVPs**
+![Demo](/assets/images/JoA "Demo")
+
+**2. Functionality**
 
 In Journey of Arabica, users will be able to scroll up and down through the website, observing DOM elements moving around the screen depicting the life cycle of a coffee bean. They will also reach an interactive graph visualization that will show reviews of Arabica coffee by country and region. They'll also see a chart visualization showing reviews of the coffee by processing method.
 
-**--MVPs--**
+**--Features--**
 
 1. Create simple lifecycle of coffee bean as user scrolls through website
 2. Create interactive graph showcasing reviews of Arabica coffee by country and region
