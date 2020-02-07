@@ -79,6 +79,7 @@ h3 {
     margin-bottom: 40%;
     background-color: rgb(255, 248, 220);
     border-radius: 40px;
+    margin-left: 5%;
 }
 .containerB div > * {
     line-height: 1.5em;
@@ -97,8 +98,8 @@ h3 {
     position: fixed;
     width: 100%;
     height: 100%;
-    top: 33%;
-    left: 45%;
+    top: 30%;
+    left: 40%;
     z-index: 2;
     pointer-events: none;
     opacity: 0;
@@ -115,13 +116,13 @@ h3 {
 }
 
 #xSelection {
-    bottom: 29%;
+    bottom: 22%;
     left: 80%;
     padding: 0.2em 1.5em 0.3em 0.8em;
     opacity: 0;
 }
 #ySelection {
-    bottom: 24%;
+    bottom: 18%;
     left: 80%;
     padding: 0.2em 1.5em 0.3em 0.8em;
     opacity: 0;

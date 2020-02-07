@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="./dist/main.css" />
     <title>Journey of Arabica</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -195,7 +196,7 @@
                 // .duration(900)
                 // .ease('elastic')
                 .attr("text-anchor", "start")
-                .attr("dx", (d, i) => i < 4 ? 67+i * 99 : i * 115-360)
+                .attr("dx", (d, i) => i < 4 ? 55+i * 99 : i * 117-380)
                 .attr("dy", (d, i) => i < 4 ? 15 : 143)
                 .attr("fill","black")
                 .style("font-size", "19px")
@@ -222,8 +223,8 @@
                 .duration(900)
                 .attr("x", (d,i) => 120 )
                 .attr("y", (d,i) => i * 40 )
-                .attr("width", (d,i) => d["production"]* constant/4)
-                .attr("height", (d,i) => constant/2)
+                .attr("width", (d,i) => d["production"]* constant/3.5)
+                .attr("height", (d,i) => constant/1.5)
                 .attr("fill", (d, i) => "#99c225")
                 .attr("opacity", 1)
                 .attr("transform", "translate(0,0) rotate(0)")
