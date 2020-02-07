@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/png" href="assets/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="./dist/main.css" />
     <title>Journey of Arabica</title>
     <script src="https://d3js.org/d3.v4.min.js"></script>
@@ -50,15 +50,43 @@
                     <h2>Brazil makes 41M 60kg bags of Arabica coffee per year. <br>That’s about 42% of the world’s total Arabica coffee production!</h2>
                     <p></p>
                 </div>
+                <div id="div8" class="fade8">
+                    <h2> Continue scrolling to see a visualization of Arabica coffee reviews by the Coffee Quality Institute.
+                    </h2>
+                    <p></p>
+                </div>
+                <div id="div9" class="fade9">
+                    <h2>
+                        <strong>Definitions</strong>
+                    </h2>
+                    <br>
+                    <h4>
+                        
+                        <strong>Aroma:</strong> the smell of the coffee when infused with hot water
+                        <br><strong>Flavor:</strong> coffee's principal character, the "mid-range" notes
+                        <br><strong>Aftertaste:</strong> the length of positive flavor (taste and aroma) qualities emanating from the back of the palate
+                        <br><strong>Acidity:</strong> contributes to a coffee's liveliness, sweetness, and fresh-fruit character 
+                        <br><strong>Body:</strong> tactile feeling of the liquid in the mouth
+                        <br><strong>Balance:</strong> how well the flavor, aftertaste, acidity, and body complement or contrast each other
+                    </h4>
+                </div>
+
+                <div id="div10" class="fade10">
+                    <h2> Scroll up or down on the graph below to zoom in and out. 
+                        <br>Try hovering over each dot and country label. 
+                        <br>Select different parameters in the bottom right.
+                    </h2>
+                    <p></p>
+                </div>
                 
                 <div id="divX" class="fade">
                 </div>
 
             </div>
             
-                <div id="scatterZoom" class="scatterUnappear"></div>
-                <select id="xSelection" class="select-css"></select>
-                <select id="ySelection" class="select-css"></select>
+            <div id="scatterZoom" class="scatterUnappear"></div>
+            <select id="xSelection" class="select-css"></select>
+            <select id="ySelection" class="select-css"></select>
         </div> 
     </div>
 
@@ -273,42 +301,114 @@
         }
    
         let scrolling0 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade0")
                 .transition().duration(1000)
                 .style("opacity",1)
         }
         let unscrolling0 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
             d3v3.select(".fade0")
                 .transition().duration(1000)
                 .style("opacity",0)
         }
         let scrolling2 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade2")
                 .transition().duration(1000)
                 .style("opacity",1)
         }
         let unscrolling2 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade2")
                 .transition().duration(1000)
                 .style("opacity",0)
         }
         let scrolling4 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade4")
                 .transition().duration(1000)
                 .style("opacity",1)
         }
         let unscrolling4 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade4")
                 .transition().duration(1000)
                 .style("opacity",0)
         }
         let scrolling6 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade6")
                 .transition().duration(1000)
                 .style("opacity",1)
         }
         let unscrolling6 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
             d3v3.select(".fade6")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scrolling8 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
+            d3v3.select(".fade8")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling8 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",1)
+            d3v3.select(".fade8")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scrolling9 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
+            d3v3.select(".fade9")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling9 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
+            d3v3.select(".fade9")
+                .transition().duration(1000)
+                .style("opacity",0)
+        }
+        let scrolling10 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
+            d3v3.select(".fade10")
+                .transition().duration(1000)
+                .style("opacity",1)
+        }
+        let unscrolling10 = () => {
+            d3v3.select(".fixed")
+                .transition().duration(1000)
+                .style("opacity",0)
+            d3v3.select(".fade10")
                 .transition().duration(1000)
                 .style("opacity",0)
         }
@@ -371,20 +471,26 @@
         //create new Waypoints, triggering on element id, percent direction,
         // and trigger function on scroll
         new scroll('divInitial', '50%', scrollingTitle, unscrollingTitle);
-        new scroll('div0', '100%', scrolling0, unscrolling0);
-        new scroll('div0', '20%', unscrolling0, scrolling0);
+        new scroll('div0', '90%', scrolling0, unscrolling0);
+        new scroll('div0', '10%', unscrolling0, scrolling0);
         new scroll('div0', '50%', initialGrid,uninitialGrid);
         new scroll('div2', '50%', grid2, grid);
-        new scroll('div2', '100%', scrolling2, unscrolling2); 
-        new scroll('div2', '20%', unscrolling2, scrolling2); 
+        new scroll('div2', '90%', scrolling2, unscrolling2); 
+        new scroll('div2', '10%', unscrolling2, scrolling2); 
         new scroll('div4', '50%', divide, grid2);
-        new scroll('div4', '100%', scrolling4, unscrolling4); 
-        new scroll('div4', '20%', unscrolling4, scrolling4); 
+        new scroll('div4', '90%', scrolling4, unscrolling4); 
+        new scroll('div4', '10%', unscrolling4, scrolling4); 
         new scroll('div6', '50%', barChart, divide);
-        new scroll('div6', '100%', scrolling6, unscrolling6); 
-        new scroll('div6', '20%', unscrolling6, scrolling6); 
+        new scroll('div6', '90%', scrolling6, unscrolling6); 
+        new scroll('div6', '10%', unscrolling6, scrolling6);
+        new scroll('div8', '80%', scrolling8, unscrolling8); 
+        new scroll('div8', '10%', unscrolling8, scrolling8); 
+        new scroll('div9', '80%', scrolling9, unscrolling9); 
+        new scroll('div9', '10%', unscrolling9, scrolling9); 
+        new scroll('div10', '80%', scrolling10, unscrolling10); 
+        new scroll('div10', '10%', unscrolling10, scrolling10); 
         new scroll('divX', '60%', scatterAppear, scatterUnappear); 
-        new scroll('divX', '90%', fixedUnappear, fixedAppear); 
+        new scroll('div8', '90%', fixedUnappear, fixedAppear); 
 
         grid();
 
