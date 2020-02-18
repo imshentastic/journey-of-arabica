@@ -169,7 +169,7 @@
                 .attr("rx", "50%")
                 .attr("ry", "50%")
                 .attr("x", (d, i) => i % column * spacing)
-                .attr("y", (d, i) => Math.floor(i / 5) % rows * spacing)
+                .attr("y", (d, i) => Math.floor(i / 5) % rows * spacing+80)
                 .attr("fill", (d, i) => (i < 40 ? "#56302e" : "#99c125"))
                 .attr("opacity", "1") //starts all colored
         }
@@ -192,7 +192,7 @@
                 .attr("rx", "50%")
                 .attr("ry", "50%")
                 .attr("x", (d, i) => i % column * spacing)
-                .attr("y", (d, i) => Math.floor(i / 5) % rows * spacing)
+                .attr("y", (d, i) => Math.floor(i / 5) % rows * spacing+80)
                 .attr("fill", (d, i) => (i < 3 ? "#bcb9b8" : "#56302e")) // 2 not colored
         }
 
@@ -215,17 +215,15 @@
                 .attr("rx", "50%")
                 .attr("ry", "50%")
                 .attr("x", (d, i) => i < 4 ? 65+i * 97 : i * 113-350)
-                .attr("y", (d, i) => i < 4 ? 20 : 150)
+                .attr("y", (d, i) => i < 4 ? 45 : 175)
                 .attr("fill", (d, i) => `#394141`)
                 .attr("opacity", (d,i)=> i < 7 ? 1 : 0 )//only show 7 species
             d3v3.selectAll('text.species')
-                // .transition()
-                // .delay( (d,i) => 40*i ) 
                 // .duration(900)
                 // .ease('elastic')
                 .attr("text-anchor", "start")
                 .attr("dx", (d, i) => i < 4 ? 55+i * 99 : i * 117-380)
-                .attr("dy", (d, i) => i < 4 ? 15 : 143)
+                .attr("dy", (d, i) => i < 4 ? 40 : 168)
                 .attr("fill","black")
                 .style("font-size", "19px")
                 .attr("text-align", "center")
