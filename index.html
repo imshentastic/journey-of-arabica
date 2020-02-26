@@ -219,8 +219,6 @@
                 .attr("fill", (d, i) => `#394141`)
                 .attr("opacity", (d,i)=> i < 7 ? 1 : 0 )//only show 7 species
             d3v3.selectAll('text.species')
-                // .duration(900)
-                // .ease('elastic')
                 .attr("text-anchor", "start")
                 .attr("dx", (d, i) => i < 4 ? 55+i * 99 : i * 117-380)
                 .attr("dy", (d, i) => i < 4 ? 40 : 168)
